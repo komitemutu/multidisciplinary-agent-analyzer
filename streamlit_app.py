@@ -2106,9 +2106,9 @@ def main():
         col_chat_input, col_chat_button = st.columns([4, 1])
         
         with col_chat_input:
-            chat_input = st.text_input(
+            chat_input_value = st.text_input(
                 "Ask a research question:",
-                key="chat_input_field",
+                key="chat_input_value",
                 placeholder="Ask about data analysis, research methods, or domain-specific questions...",
                 label_visibility="collapsed"
             )
@@ -2117,11 +2117,11 @@ def main():
             send_button = st.button("Send", key="send_chat")
         
         # Handle chat input
-        if send_button and chat_input.strip():
+        if send_button and chat_input_value.strip():
             # Add user message to history
             st.session_state.chat_history.append({
                 'role': 'user',
-                'content': chat_input,
+                'content': chat_input_value,
                 'timestamp': datetime.now()
             })
             
@@ -2135,7 +2135,7 @@ def main():
                 }
                 
                 ai_response = ai_client.generate_analysis(
-                    chat_input, domain, json.dumps(data_summary, indent=2)
+                    chat_input_value, domain, json.dumps(data_summary, indent=2)
                 )
                 
                 # Add AI response to history
@@ -2146,7 +2146,7 @@ def main():
                 })
             
             # Clear input and rerun to update chat
-            st.session_state.chat_input_field = ""
+            st.session_state.chat_input_value = ""
             st.rerun()
         
         # Research tools
