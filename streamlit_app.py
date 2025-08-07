@@ -2108,7 +2108,7 @@ def main():
         with col_chat_input:
             chat_input = st.text_input(
                 "Ask a research question:",
-                key="chat_input",
+                key="chat_input_field",
                 placeholder="Ask about data analysis, research methods, or domain-specific questions...",
                 label_visibility="collapsed"
             )
@@ -2146,7 +2146,7 @@ def main():
                 })
             
             # Clear input and rerun to update chat
-            st.session_state.chat_input = ""
+            st.session_state.chat_input_field = ""
             st.rerun()
         
         # Research tools
